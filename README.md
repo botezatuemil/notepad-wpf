@@ -35,3 +35,10 @@ Change font, size, style and weight of text
 
 ![image](https://user-images.githubusercontent.com/74835450/194278298-e3945e5e-acc8-4d32-8c9e-a314102964d9.png)
 
+
+## Tech Stack
+
+C# programming language with MVVM pattern
+
+
+
