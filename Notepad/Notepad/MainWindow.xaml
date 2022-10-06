@@ -1,0 +1,81 @@
+﻿<Window x:Class="Notepad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notepad.Models"
+        xmlns:viewmodels="clr-namespace:Notepad.ViewModels"
+        mc:Ignorable="d"
+        Title="Notepad++" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodels:MainViewModel/>
+    </Window.DataContext>
+    <DockPanel Margin="1">
+        <Menu DockPanel.Dock="Top">
+            <Menu.Items>
+                <MenuItem Header="File" Background="#959aa1" Height="25px" Width="40px" BorderBrush="Black" DataContext="{Binding File}">
+                    <MenuItem Header="New" Command="{Binding NewCommand}"/>
+                    <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
+                    <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
+                    <MenuItem Header="Save as..." Command="{Binding SaveAsCommand}"/>
+                    <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
+                </MenuItem>
+
+                <MenuItem Header="Search" Background="#959aa1" Height="25px" Width="60px" BorderBrush="Black" DataContext="{Binding Search}">
+                    <MenuItem Header="Find" Command="{Binding FindCommand}"/>
+                    <MenuItem Header="Replace" Command="{Binding ReplaceCommand}"/>
+                    <MenuItem Header="Replace All" Command="{Binding ReplaceAllCommand}"/>
+                </MenuItem>
+
+                <MenuItem Header="Format" Background="#959aa1" Height="25px" Width="60px" BorderBrush="Black" DataContext="{Binding Editor}">
+                    <MenuItem Header="Format" Command="{Binding FormatCommand}"/>
+                   
+
+                </MenuItem>
+
+                <MenuItem Header="Help" Background="#959aa1" Height="25px" Width="40px" BorderBrush="Black" DataContext="{Binding Help}">
+                    <MenuItem Header="About" Command="{Binding HelpCommand}"/>
+                </MenuItem>
+
+
+                <MenuItem Background="#959aa1" Header="Remove Tab" Height="25px" Width="80px" BorderBrush="Black" DataContext="{Binding Tab}" Command="{Binding RemoveTabCommand}">
+
+                </MenuItem>
+            </Menu.Items>
+        </Menu>
+
+        <TabControl DockPanel.Dock="Top" ItemsSource="{Binding Tabs.TabsArray}" SelectedIndex="{Binding Tabs.activeTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Name="TabControlName">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Filename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                       
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                        <DockPanel>
+                        <TextBlock DockPanel.Dock="Bottom" Text="{Binding Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <local:CustomTextBox DockPanel.Dock="Top"
+                                 VerticalScrollBarVisibility="Visible" 
+                                 FontFamily="{Binding Family}" 
+                                 FontSize="{Binding Size}"
+                                 FontStyle="{Binding FontStyle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 FontWeight="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 TextWrapping="{Binding TextWrapping}"
+                                 AcceptsReturn="True"
+                                 AcceptsTab="True"
+                                 Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 BindableSelectionStart="{Binding StartFocus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 BindableSelectionLength="{Binding EndFocus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  
+                               
+                        />
+                        </DockPanel>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+
+        </TabControl>
+    </DockPanel>
+</Window>

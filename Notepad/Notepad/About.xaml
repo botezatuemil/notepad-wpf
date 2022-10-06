@@ -1,0 +1,36 @@
+﻿<Window x:Class="Notepad.About"
+        xmlns:viewmodels="clr-namespace:Notepad.ViewModels"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Notepad"
+        mc:Ignorable="d"
+        Title="About" Height="350" Width="400">
+    <Window.DataContext>
+        <viewmodels:HelpViewModel/>
+    </Window.DataContext>
+    <Grid HorizontalAlignment="Center" Margin="0,0,0,8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="87*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
+        <TextBlock
+            Text="Nume student: Botezatu Emil" Margin="0,35,0,123"
+            />
+        <TextBlock
+             Text="Grupa: 10lf201" Margin="0,64,0,80"
+            />
+        <TextBlock Margin="0,92,0,59">
+            <Button Background="Transparent" Command="{Binding OpenLinkCommand}" BorderThickness="0">
+                
+                <TextBlock Text="Adresa institutionala" FontStyle="Italic" TextDecorations="Underline">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="Blue" />
+                    </TextBlock.Foreground>
+                </TextBlock>
+                </Button>
+        </TextBlock>
+    </Grid>
+
+</Window>
